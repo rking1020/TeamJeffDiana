@@ -1,3 +1,5 @@
+__author__ = 'audihurrr'
+
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -18,15 +20,18 @@ product_num = product_master['PRODUCT_NBR']
 product_desc = product_master['PRODUCT_DESCRIPTION']
 total_line_amount = order_master['TOTAL_LINE_AMT']
 
-
-
 host1 = product_airtime['HOST1']
 host2 = product_airtime['HOST2']
 
-top10_prod = prod_category.value_counts()[:10]
+#top3_prod = prod_category.value_counts()[:3]
+
+# look into moving the key
+pd.DataFrame(prod_category.value_counts()[:3]).plot(kind='pie', subplots=True, figsize=(8, 4))
+
+#df.plot(kind='pie', subplots=True, figsize=(8, 4))
 
 # Plot the bar graph
-plt.bar(range(1,11,1),top10_prod)
+#plt.plot(range(1,11,1),top10_prod)
 plt.show()
 
 #print product_airtime.sort(['HOST1'])
