@@ -1,0 +1,32 @@
+#include "foo.h"
+using std::cout;
+using std::endl;
+using std::ifstream;
+
+int main(int argc, char** argv){
+
+  std::ifstream in(argv[1]);
+ 
+  float tot=30;
+  char* ordNump;
+  int ordLine;
+  int cusNum;
+  char* prodNum;
+  char* ordPlat;
+  char*ordDate;
+  char*ordTime;
+  float lineAmt;
+
+  if(argc<2){
+    return 1;
+  }
+  while(in.good()){
+    in >> ordNum >> ordLine >> cusNum >> prodNum >> ordPlat >> ordDate >> ordTime >> lineAmt;
+    tot += 1;
+  }
+  in.close();
+  printf("%f", tot);
+  return 0;
+}
+
+

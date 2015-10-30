@@ -1,0 +1,12 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<strings.h>
+#include<fstream>
+#include<iostream>
+
+ protected:
+ public:
+  float money;
+  float tot;
+  float rtnTot(float* d);
+ private:
