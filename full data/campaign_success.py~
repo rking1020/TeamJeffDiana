@@ -1,0 +1,87 @@
+#!/usr/bin/env python
+
+
+import csv
+import sys
+
+def main(argv):
+
+    
+    fieldnames = ['MONTH', 'CATEGORY', 'SPEND_SUM']
+
+    al=0.0    # All
+    acc=0.0    # Accessories
+    app=[0.0,0.0,0.0]    # Apparel
+    aa=[0.0,0.0,0.0]    # Apparel & Accessories
+    aaj=[0.0,0.0,0.0]    # Apparel, Accessories & Jewelry
+    aajb=[0.0,0.0,0.0]    # Apparel, Accessories, Jewelry & Beauty
+    bea=[0.0,0.0,0.0]    # Beauty
+    elec=[0.0,0.0,0.0]    # Electronics
+    hg=[0.0,0.0,0.0]    # Home & Garden
+    kf=[0.0,0.0,0.0]    # Kitchen & Food
+    
+    # Read the data from the csv
+    try:
+        with open('email_campaign.csv', 'rb') as emailfile:
+            emailreader = csv.DictReader(emailfile, quotechar='"', delimiter=',')
+            # Write the modified 
+            with open('result.csv', 'wb') as resultfile:
+                rwriter = csv.DictWriter(resultfile, fieldnames=fieldnames) 
+                rwriter.writeheader()
+                rwriter.writerow({'MONTH':'Dec', 'CATEGORY':'Fun', 'SPEND_SUM':50})
+                
+                for row in emailreader:
+                    print((row['CAMPAIGN_DATE']))
+                    if(row['CAMPAIGN_DATE'].startswith("1/")):
+                        month="January"
+                        if(row['PRODUCT_CATEGORY']=='All'):
+                            al[0]+=int(row['CAMPAIGN_SPEND'])
+                        elif(row['PRODUCT_CATEGORY']=='Accessories'):
+                            acc[0]+=int(row['CAMPAIGN_SPEND'])
+                        elif(row['PRODUCT_CATEGORY']=='Apparel'):
+                            app[0]+=int(row['CAMPAIGN_SPEND'])
+                        elif(row['PRODUCT_CATEGORY']=='Accessories & Apparel'):
+                            aa[0]+=int(row['CAMPAIGN_SPEND'])
+                        elif(row['PRODUCT_CATEGORY']=='Accessories, Apparel & Jewelry'):
+                            aaj[0]+=int(row['CAMPAIGN_SPEND'])
+                        elif(row['PRODUCT_CATEGORY']=='Accessories, Apparel, Jewelry & Beauty'):
+                            aajb[0]+=int(row['CAMPAIGN_SPEND'])
+                        elif(row['PRODUCT_CATEGORY']=='Beauty'):
+                            bea[0]+=int(row['CAMPAIGN_SPEND'])
+                        elif(row['PRODUCT_CATEGORY']=='Electronics'):
+                            elec[0]+=int(row['CAMPAIGN_SPEND'])
+                        elif(row['PRODUCT_CATEGORY']=='Home & Garden'):
+                            hg[0]+=int(row['CAMPAIGN_SPEND'])
+                        elif(row['PRODUCT_CATEGORY']=='Kitchen & Food'):
+                            kf[0]+=int(row['CAMPAIGN_SPEND'])
+                        else:
+                            print("OH MAN. WE LOST SOMETHING IN JAN")
+
+                rwriter.writerow({'MONTH':})
+                            
+                        rwriter.writerow({'MONTH':'Dec', 'CATEGORY':'Fun', 'SPEND_SUM':50})
+                
+            
+               # except IOError:
+                #    print "I can't write stuff"
+
+    except IOError:
+        print "Error: File may not exist"
+    
+
+                
+            
+           # print(row['CAMPAIGN_DATE'], row['PRODUCT_CATEGORY'], row['CAMPAIGN_SPEND'])
+
+#with open('order_master.csv', 'rb') as orderfile:
+#    orderreader = csv.DictReader(orderfile, delimiter=',', quotechar='|')
+#    for row in orderreader:
+#        print(row['TOTAL_LINE_AMT'], row['ORDER_TIME'])
+        
+# begin gracefully
+#
+if __name__=="__main__":
+    main(sys.argv[1:])
+#
+# end of file
+     
