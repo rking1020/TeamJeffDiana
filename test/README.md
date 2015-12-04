@@ -1,0 +1,1 @@
+This folder is not the complete set of code used to find Host Information. This was an initial collection of tests done on the data to see if there were any trends of helpful information that could be determined from the data set and analysis from only the host CSV file.
